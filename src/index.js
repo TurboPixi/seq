@@ -10,7 +10,7 @@ import * as PIXI from 'pixi.js';
 import TweenLite from 'gsap/TweenLite';
 
 window.onload = function() {
-    var project = new Project(null);
+    var project = new Project(window.onInitComplete != undefined ? window.onInitComplete : null);
 }
 
 class Project {
@@ -120,6 +120,8 @@ class Project {
 
                 if(this.initCallback != undefined && this.initCallback != null) {
                     this.initCallback();
+                } else if(window.initCallback != undefined) {
+                    window.initCallback();
                 }
                 TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                 TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });

@@ -66770,7 +66770,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 window.onload = function () {
-    var project = new Project(null);
+    var project = new Project(window.onInitComplete != undefined ? window.onInitComplete : null);
 };
 
 var Project = function () {
@@ -66859,6 +66859,8 @@ var Project = function () {
 
                 if (this.initCallback != undefined && this.initCallback != null) {
                     this.initCallback();
+                } else if (window.initCallback != undefined) {
+                    window.initCallback();
                 }
                 _TweenLite2.default.to(this.visualization.getDisplay(), 0.75, { alpha: "1" });
                 _TweenLite2.default.to(this.cellContainer, 0.75, { alpha: "1" });
