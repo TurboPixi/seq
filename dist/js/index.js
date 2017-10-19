@@ -66769,14 +66769,16 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-window.init = function () {
-    var project = new Project(window.onInitComplete, window.onProjectComplete);
+window.onload = function () {
+    var project = new Project(null);
 };
 
 var Project = function () {
     function Project(initCallback) {
         _classCallCheck(this, Project);
 
+        // used when project is initialized through project loader at jakefrederick.com
+        // TODO: make init notification system that works more gracefully
         this.initCallback = initCallback;
         this.init();
     }
@@ -66854,7 +66856,8 @@ var Project = function () {
                 this.pattern.start(0);
                 this.draw();
                 this.onWindowResize();
-                if (this.initCallback != undefined) {
+
+                if (this.initCallback != undefined && this.initCallback != null) {
                     this.initCallback();
                 }
                 _TweenLite2.default.to(this.visualization.getDisplay(), 0.75, { alpha: "1" });
