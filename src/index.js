@@ -114,7 +114,7 @@ class Project {
                 this.pattern.start(0);
                 this.draw();
                 this.onWindowResize();
-                window.postMessage("initComplete'", "https://github.com/jfred1979/");
+                window.postMessage("initComplete'", "https://jfred1979.github.io");
                 TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                 TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
             }.bind(this)
