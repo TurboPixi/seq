@@ -13,6 +13,8 @@ window.onload = function() {
     var project = new Project();
 }
 
+const DOMAIN = "https://jfred1979.github.io";
+
 class Project {
     constructor() {
         this.init();
@@ -114,7 +116,9 @@ class Project {
                 this.pattern.start(0);
                 this.draw();
                 this.onWindowResize();
-                window.postMessage("initComplete", "https://jfred1979.github.io");
+                if(window.parent != undefined) {
+                    window.postMessage("initComplete", DOMAIN);
+                }
                 TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                 TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
             }.bind(this)
