@@ -10,14 +10,11 @@ import * as PIXI from 'pixi.js';
 import TweenLite from 'gsap/TweenLite';
 
 window.onload = function() {
-    var project = new Project(window.onInitComplete != undefined ? window.onInitComplete : null);
+    var project = new Project();
 }
 
 class Project {
-    constructor(initCallback) {
-        // used when project is initialized through project loader at jakefrederick.com
-        // TODO: make init notification system that works more gracefully
-        this.initCallback = initCallback;
+    constructor() {
         this.init();
     }
 
@@ -117,12 +114,7 @@ class Project {
                 this.pattern.start(0);
                 this.draw();
                 this.onWindowResize();
-
-                if(this.initCallback != undefined && this.initCallback != null) {
-                    this.initCallback();
-                } else if(window.initCallback != undefined) {
-                    window.initCallback();
-                }
+                window.postMessage("initComplete'", "https://github.com/jfred1979/");
                 TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                 TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
             }.bind(this)

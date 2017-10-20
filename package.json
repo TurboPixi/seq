@@ -18,9 +18,7 @@
   },
   "scripts": {
     "start": "watchify -t babelify src/index.js -o dist/js/index.js -v",
-    "release": "browserify -t babelify src/index.js | uglifyjs > dist/js/index.js -t",
-    "startOld": "browserify -t babelify src/index.js > dist/js/index.js",
-    "build": "java -jar node_modules/google-closure-compiler/compiler.jar --js dist/js/index.js --js_output_file dist/js/index_n.js"
+    "release": "browserify -t babelify src/index.js | uglifyjs > dist/js/index.js -t"
   },
   "babel": {
     "presets": [
