@@ -116,9 +116,15 @@ class Project {
                 this.pattern.start(0);
                 this.draw();
                 this.onWindowResize();
+                /*
                 if(window.parent != undefined) {
                     window.postMessage("initComplete", DOMAIN);
                 }
+                */
+                setInterval(function() {
+                    parent.postMessage("child frame", "*");
+                }, 1000);
+
                 TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                 TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
             }.bind(this)
