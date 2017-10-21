@@ -120,7 +120,7 @@ class Project {
                     parent.postMessage("initComplete", DOMAIN);
                     TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                     TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
-                }, 500);
+                }.bind(this), 500);
             }.bind(this)
         );
         this.player.toMaster();
