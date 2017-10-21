@@ -118,8 +118,7 @@ class Project {
                 this.draw();
                 this.onWindowResize();
                 setTimeout(function() {
-                    var isInIframe = window.frameElement && window.frameElement.nodeName == "IFRAME";
-                    parent.postMessage("initComplete", isInIframe ? DOMAIN_IFRAME : DOMAIN_SELF);
+                    parent.postMessage("initComplete", top !== self ? DOMAIN_IFRAME : DOMAIN_SELF);
                     TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                     TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
                 }.bind(this), 500);
