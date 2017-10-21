@@ -13,7 +13,7 @@ window.onload = function() {
     var project = new Project();
 }
 
-const DOMAIN = "https://www.jakefrederick.com";
+const DOMAIN = "https://jfred1979.github.io";
 
 class Project {
     constructor() {
