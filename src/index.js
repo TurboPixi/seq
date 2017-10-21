@@ -13,9 +13,6 @@ window.onload = function() {
     var project = new Project();
 }
 
-const DOMAIN_SELF = "https://jfred1979.github.io";
-const DOMAIN_IFRAME = "https://www.jakefrederick.com";
-
 class Project {
     constructor() {
         this.init();
@@ -118,7 +115,7 @@ class Project {
                 this.draw();
                 this.onWindowResize();
                 setTimeout(function() {
-                    parent.postMessage("initComplete", top !== self ? DOMAIN_IFRAME : DOMAIN_SELF);
+                    parent.postMessage("initComplete", "*");
                     TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                     TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
                 }.bind(this), 500);
