@@ -13,7 +13,8 @@ window.onload = function() {
     var project = new Project();
 }
 
-const DOMAIN = "https://jfred1979.github.io";
+const DOMAIN_SELF = "https://jfred1979.github.io";
+const DOMAIN_IFRAME = "https://www.jakefrederick.com";
 
 class Project {
     constructor() {
@@ -117,7 +118,8 @@ class Project {
                 this.draw();
                 this.onWindowResize();
                 setTimeout(function() {
-                    parent.postMessage("initComplete", DOMAIN);
+                    var isInIframe = window.frameElement && window.frameElement.nodeName == "IFRAME";
+                    parent.postMessage("initComplete", isInIframe ? DOMAIN_IFRAME : DOMAIN_SELF);
                     TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                     TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
                 }.bind(this), 500);
