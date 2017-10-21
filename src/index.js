@@ -13,7 +13,7 @@ window.onload = function() {
     var project = new Project();
 }
 
-const DOMAIN = "https://jfred1979.github.io";
+const DOMAIN = "https://www.jakefrederick.com";
 
 class Project {
     constructor() {
@@ -116,17 +116,11 @@ class Project {
                 this.pattern.start(0);
                 this.draw();
                 this.onWindowResize();
-                /*
-                if(window.parent != undefined) {
-                    window.postMessage("initComplete", DOMAIN);
-                }
-                */
-                setInterval(function() {
-                    parent.postMessage("child frame", "*");
-                }, 1000);
-
-                TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
-                TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
+                setTimeout(function() {
+                    parent.postMessage("initComplete", DOMAIN);
+                    TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
+                    TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
+                }, 500);
             }.bind(this)
         );
         this.player.toMaster();
