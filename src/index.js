@@ -8,7 +8,7 @@ import * as GlobalStyle from './GlobalStyle';
 import Tone from 'tone';
 import * as PIXI from 'pixi.js';
 import TweenLite from 'gsap/TweenLite';
-import unlockContext from 'ios-audio-unlock';
+import unlockAudio from 'ios-audio-unlock';
 
 window.onload = function() {
     var project = new Project();
