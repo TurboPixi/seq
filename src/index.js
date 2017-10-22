@@ -116,12 +116,11 @@ class Project {
                 this.draw();
                 this.onWindowResize();
                 setTimeout(function() {
+                    parent.postMessage("initComplete", "*");
                     unlockAudio(Tone.context, () => {
                         TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
                         TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
-                        parent.postMessage("initComplete", "*");
                     }, false, true);
-
                 }.bind(this), 500);
             }.bind(this)
         );
