@@ -8,6 +8,7 @@ import * as GlobalStyle from './GlobalStyle';
 import Tone from 'tone';
 import * as PIXI from 'pixi.js';
 import TweenLite from 'gsap/TweenLite';
+import unlockContext from 'ios-audio-unlock';
 
 window.onload = function() {
     var project = new Project();
@@ -115,9 +116,12 @@ class Project {
                 this.draw();
                 this.onWindowResize();
                 setTimeout(function() {
-                    parent.postMessage("initComplete", "*");
-                    TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
-                    TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
+                    unlockAudio(Tone.context, () => {
+                        TweenLite.to(this.visualization.getDisplay(), 0.75, { alpha:"1" });
+                        TweenLite.to(this.cellContainer, 0.75, { alpha:"1" });
+                        parent.postMessage("initComplete", "*");
+                    }, false, true);
+
                 }.bind(this), 500);
             }.bind(this)
         );
